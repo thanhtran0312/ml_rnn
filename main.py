@@ -180,11 +180,11 @@ if __name__ == '__main__':
   model = RNNClassifier(vocab_size=len(vocab), pad_idx=vocab["<PAD>"]).to(device)
   criterion = nn.BCEWithLogitsLoss()
   optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-4)
-    best_val_loss = float("inf")
-    patience, patience_counter = 5, 0
-    num_epochs = 50
+  best_val_loss = float("inf")
+  patience, patience_counter = 5, 0
+  num_epochs = 50
     
-    for epoch in range(num_epochs):
+  for epoch in range(num_epochs):
         model.train()
         train_loss = 0
         for padded, lab, lengths in train_loader:
@@ -218,11 +218,11 @@ if __name__ == '__main__':
                 break
     
     
-    model.load_state_dict(torch.load("best_model.pt"))
-    model.eval()
+  model.load_state_dict(torch.load("best_model.pt"))
+  model.eval()
     
-    all_preds, all_labels, all_probs = [], [], []
-    with torch.no_grad():
+  all_preds, all_labels, all_probs = [], [], []
+  with torch.no_grad():
         for padded, lab, lengths in test_loader:
             padded, lab = padded.to(device), lab.to(device)
             logits = model(padded, lengths)
@@ -231,8 +231,8 @@ if __name__ == '__main__':
             all_labels.extend(lab.cpu().numpy())
             all_probs.extend(probs.cpu().numpy())
     
-    print(f"Accuracy:  {accuracy_score(all_labels, all_preds):.4f}")
-    print(f"Precision: {precision_score(all_labels, all_preds):.4f}")
-    print(f"Recall:    {recall_score(all_labels, all_preds):.4f}")
-    print(f"F1:        {f1_score(all_labels, all_preds):.4f}")
-    print(f"AUC:       {roc_auc_score(all_labels, all_probs):.4f}")
+  print(f"Accuracy:  {accuracy_score(all_labels, all_preds):.4f}")
+  print(f"Precision: {precision_score(all_labels, all_preds):.4f}")
+  print(f"Recall:    {recall_score(all_labels, all_preds):.4f}")
+  print(f"F1:        {f1_score(all_labels, all_preds):.4f}")
+  print(f"AUC:       {roc_auc_score(all_labels, all_probs):.4f}")
