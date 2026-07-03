@@ -97,7 +97,7 @@ class RNNClassifier(nn.Module):
         return self.fc(out).squeeze(1)
 
 # train
-if __name__ = '__main__':
+if __name__ == '__main__':
   
   files = {
       "alzheimer": "./data/class1/linear.txt",
