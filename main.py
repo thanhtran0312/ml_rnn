@@ -1,8 +1,24 @@
 """
 result:
 
-
-
+Epoch 1: train_loss=0.5096, val_loss=0.4392
+Epoch 2: train_loss=0.4066, val_loss=0.4031
+Epoch 3: train_loss=0.3715, val_loss=0.3943
+Epoch 4: train_loss=0.3494, val_loss=0.3834
+Epoch 5: train_loss=0.3321, val_loss=0.3823
+Epoch 6: train_loss=0.3145, val_loss=0.3812
+Epoch 7: train_loss=0.2974, val_loss=0.3809
+Epoch 8: train_loss=0.2836, val_loss=0.3900
+Epoch 9: train_loss=0.2642, val_loss=0.4103
+Epoch 10: train_loss=0.2519, val_loss=0.3924
+Epoch 11: train_loss=0.2343, val_loss=0.4238
+Epoch 12: train_loss=0.2211, val_loss=0.4347
+Early stopping at epoch 12
+Accuracy:  0.8154
+Precision: 0.8481
+Recall:    0.8075
+F1:        0.8273
+AUC:       0.8992
 
 """
 import re
