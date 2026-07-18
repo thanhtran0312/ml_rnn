@@ -1,7 +1,9 @@
 # ml_rnn
 
 Originial paper: Detecting Dementia through Retrospective Analysis of Routine Blog Posts by Bloggers with Dementia, V. Masrani and G. Murray and T. Field and G. Carenini, ACL 2017 BioNLP Workshop, Vancouver, Canada. 
+
 In the original paper, authors implemented a SVM classifier for Alzheimer detection, given a set of blog posts written by patients and family members. It's a cool idea as a very cost effective way of diagnosis instead of fancy and expensive neuroimaging domains, which is categorically a more accurate diagnosis tool; however, not always accessible.
+
 The original practical builds one TF-IDF vector per document over a manually size-capped vocabulary and classifies with an SVM. SVM gave perfect score of 1.0, which is very typical of feature/document leakage. I checked vocab_file.txt and found common proper nouns, drug names, author fingerprints, so instead of just tuning C and kernel, I implemented a model designed to test whether the signal survives once that leakage is controlled for. The handcrafted features (TF-IDF or n-grams) were not very sensible, so I chose a model where embeddings would be learned, an RNN, which is suitable for sequential data like text.
 
 This repo used an rnn many-to-one to classify the same dataset whether a sample belongs to Alzheimer's patients or controls. Each blog post is split into sentences, each sentence inherits its document's label, and a bidirectional-agnostic single- layer LSTM classifier (light model because I have limited time, and this dataset can be easily overfit with more parameters) is trained directly on token sequences (learned embeddings, no hand-built vocabulary), producing a single binary prediction per sentence. Otherwise, if I kept the original data as was, I only have one training sample. Also, then the task would be to detect the writer, not Alzheimer’s patients.
